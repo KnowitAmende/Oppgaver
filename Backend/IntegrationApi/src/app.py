@@ -8,6 +8,10 @@ Swagger(app)
 
 ITEMS_PER_PAGE = 4  # Number of items to display per page
 
+@app.route('/')
+def home():
+    return "IntegrationApi is running!"
+
 @app.route('/concepts', methods=['POST'])
 def get_concepts():
     """
@@ -60,8 +64,6 @@ def get_concepts():
                     type: string
                   definition_en:
                     type: string
-                  definition_lastUpdated:
-                    type: string
                     format: date
             total_pages:
               type: integer
@@ -97,4 +99,4 @@ def get_concepts():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

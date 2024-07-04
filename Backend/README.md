@@ -78,11 +78,15 @@ Det forventes at begrepene skal ha følgende JSON-format:
 
 }
 
+I denne oppgaven så bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
 
+Gjør følgende:
+1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
+https://www.docker.com/products/docker-desktop/
+2. Kjør bash eller powershell filen runme.
+(Denne bygger test api'et og så tar opp sql databasen og api'et)
 
-I denne oppgaven så later vi som  er interntjenesten.
-
-For å hente ut alle begrep så kan man sende en POST-request til . Send med body { page: 1 } for å hente neste side.
+For å hente ut alle begrep så kan man sende en POST-request til localhost:8080. Send med body { page: 1 } for å hente neste side.
 
 Lag ett kjørbart program i ditt valgte programmeringsspråk som har et REST-interface med to endepunkt:
 
@@ -112,5 +116,7 @@ Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med
       "lastUpdated": date
 
   }
-
 }
+
+
+Er det noe mer du burde ha gjort?
