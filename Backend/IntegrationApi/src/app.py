@@ -35,6 +35,10 @@ class Concept(Base):
 
 ITEMS_PER_PAGE = 4  # Number of items to display per page
 
+@app.route('/')
+def home():
+    return "IntegrationApi is running!"
+
 @app.route('/concepts', methods=['POST'])
 def get_concepts():
     """
@@ -86,8 +90,6 @@ def get_concepts():
                   definition_nn:
                     type: string
                   definition_en:
-                    type: string
-                  definition_lastUpdated:
                     type: string
                     format: date
             total_pages:

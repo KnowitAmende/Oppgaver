@@ -19,17 +19,17 @@ services:
       timeout: 5s
       retries: 5
 
-  api:
-    build:
-      context: ./integrationAPI
-      dockerfile: Dockerfile
-    container_name: flask_api_container
+  integration_api:
+    build: ./IntegrationApi/src/.
+    container_name: integration_api_container
+    environment:
+      - PYTHONUNBUFFERED=1
     ports:
-      - "5000:5000"
+      - "8080:5000"
     networks:
       - mynetwork
     volumes:
-      - ./integrationAPI:/app
+      - ./IntegrationApi/src:/app
     depends_on:
       mysql:
         condition: service_healthy
