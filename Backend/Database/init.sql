@@ -1,32 +1,37 @@
-CREATE DATABASE IF NOT EXISTS testdb;
+-- init.sql
+CREATE DATABASE IF NOT EXISTS testdb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE testdb;
 
-CREATE TABLE IF NOT EXISTS books (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    author VARCHAR(255) NOT NULL,
-    year_published INT NOT NULL,
-    genre VARCHAR(255) NOT NULL
-);
+CREATE TABLE IF NOT EXISTS concepts (
+    id VARCHAR(255) PRIMARY KEY,
+    subject_nb VARCHAR(255),
+    subject_nn VARCHAR(255),
+    subject_en VARCHAR(255),
+    preferredLabel_nb VARCHAR(255),
+    preferredLabel_nn VARCHAR(255),
+    preferredLabel_en VARCHAR(255),
+    alternativeLabel_nb VARCHAR(255),
+    alternativeLabel_nn VARCHAR(255),
+    alternativeLabel_en VARCHAR(255),
+    definition_nb TEXT,
+    definition_nn TEXT,
+    definition_en TEXT,
+    definition_lastUpdated DATE
+) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-INSERT INTO books (title, author, year_published, genre) VALUES
-('To Kill a Mockingbird', 'Harper Lee', 1960, 'Fiction'),
-('1984', 'George Orwell', 1949, 'Dystopian'),
-('Pride and Prejudice', 'Jane Austen', 1813, 'Romance'),
-('The Great Gatsby', 'F. Scott Fitzgerald', 1925, 'Tragedy'),
-('Moby Dick', 'Herman Melville', 1851, 'Adventure'),
-('War and Peace', 'Leo Tolstoy', 1869, 'Historical'),
-('The Catcher in the Rye', 'J.D. Salinger', 1951, 'Fiction'),
-('The Hobbit', 'J.R.R. Tolkien', 1937, 'Fantasy'),
-('Fahrenheit 451', 'Ray Bradbury', 1953, 'Dystopian'),
-('Jane Eyre', 'Charlotte Bronte', 1847, 'Romance'),
-('Brave New World', 'Aldous Huxley', 1932, 'Dystopian'),
-('Animal Farm', 'George Orwell', 1945, 'Political satire'),
-('The Odyssey', 'Homer', -800, 'Epic'),
-('Les Misérables', 'Victor Hugo', 1862, 'Historical'),
-('The Brothers Karamazov', 'Fyodor Dostoevsky', 1880, 'Philosophical'),
-('Crime and Punishment', 'Fyodor Dostoevsky', 1866, 'Psychological'),
-('The Count of Monte Cristo', 'Alexandre Dumas', 1844, 'Adventure'),
-('Wuthering Heights', 'Emily Bronte', 1847, 'Tragedy'),
-('Great Expectations', 'Charles Dickens', 1861, 'Bildungsroman'),
-('The Picture of Dorian Gray', 'Oscar Wilde', 1890, 'Philosophical');
+INSERT INTO concepts (id, subject_nb, subject_nn, subject_en, preferredLabel_nb, preferredLabel_nn, preferredLabel_en, alternativeLabel_nb, alternativeLabel_nn, alternativeLabel_en, definition_nb, definition_nn, definition_en, definition_lastUpdated) VALUES
+('1', 'Informatikk', 'Informatikk', 'Computer Science', 'Algoritme', 'Algoritme', 'Algorithm', 'Prosedyre', 'Prosedyre', 'Procedure', 'En presis beskrivelse av en serie operasjoner som skal utføres for å løse et problem.', 'Ei presis skildring av ein serie operasjonar som skal utførast for å løyse eit problem.', 'A precise description of a series of operations to be performed to solve a problem.', '2024-07-01'),
+('2', 'Matematikk', 'Matematikk', 'Mathematics', 'Integral', 'Integral', 'Integral', 'Antiderivat', 'Antiderivert', 'Antiderivative', 'En matematisk operasjon som brukes til å beregne areal under en kurve eller volum av en figur.', 'Ein matematisk operasjon som vert nytta til å rekne ut areal under ei kurve eller volum av ein figur.', 'A mathematical operation used to calculate the area under a curve or the volume of a figure.', '2024-07-02'),
+('3', 'Fysikk', 'Fysikk', 'Physics', 'Entropi', 'Entropi', 'Entropy', 'Uorden', 'Uorden', 'Disorder', 'Et mål på graden av uorden eller tilfeldighet i et system.', 'Eit mål på graden av uorden eller tilfeldigheit i eit system.', 'A measure of the degree of disorder or randomness in a system.', '2024-07-03'),
+('4', 'Biologi', 'Biologi', 'Biology', 'Fotosyntese', 'Fotosyntese', 'Photosynthesis', 'Karbonfiksering', 'Karbonfiksering', 'Carbon fixation', 'Prosessen der planter og andre organismer omdanner lysenergi til kjemisk energi som kan brukes til å drive organismens aktiviteter.', 'Prosessen der plantar og andre organismar omdannar lysenergi til kjemisk energi som kan brukast til å drive organismen sine aktivitetar.', 'The process by which plants and other organisms convert light energy into chemical energy that can be used to fuel the organism\'s activities.', '2024-07-04'),
+('5', 'Kjemi', 'Kjemi', 'Chemistry', 'Katalysator', 'Katalysator', 'Catalyst', 'Reaksjonsakselerator', 'Reaksjonsakselerator', 'Reaction accelerator', 'Et stoff som øker hastigheten på en kjemisk reaksjon uten selv å bli forbrukt i prosessen.', 'Eit stoff som aukar farten på ein kjemisk reaksjon utan sjølv å bli forbrukt i prosessen.', 'A substance that increases the rate of a chemical reaction without itself being consumed in the process.', '2024-07-05'),
+('6', 'Geologi', 'Geologi', 'Geology', 'Tektonisk plate', 'Tektonisk plate', 'Tectonic plate', 'Litosfæreplate', 'Litosfæreplate', 'Lithospheric plate', 'Et massivt, irregulært formet stykke av jordens litosfære som beveger seg i forhold til andre plater.', 'Eit massivt, irregulært forma stykke av jorda si litosfære som beveger seg i forhold til andre plater.', 'A massive, irregularly shaped slab of solid rock, generally composed of both continental and oceanic lithosphere, that moves relative to other plates.', '2024-07-06'),
+('7', 'Psykologi', 'Psykologi', 'Psychology', 'Kognitiv dissonans', 'Kognitiv dissonans', 'Cognitive dissonance', 'Mental uoverensstemmelse', 'Mental uovereinstemmelse', 'Mental inconsistency', 'Den mentale konflikten som oppstår når en persons overbevisninger eller antakelser blir motsagt av ny informasjon.', 'Den mentale konflikten som oppstår når ein person sine overtydingar eller føresetnader blir motsagt av ny informasjon.', 'The mental conflict that occurs when a person\'s beliefs or assumptions are contradicted by new information.', '2024-07-07'),
+('8', 'Økonomi', 'Økonomi', 'Economics', 'Inflasjon', 'Inflasjon', 'Inflation', 'Prisstigning', 'Prisstigning', 'Price increase', 'En generell økning i prisnivået i en økonomi over tid, som resulterer i en reduksjon av pengenes kjøpekraft.', 'Ein generell auke i prisnivået i ein økonomi over tid, som resulterer i ein reduksjon av pengane si kjøpekraft.', 'A general increase in prices and fall in the purchasing value of money over time in an economy.', '2024-07-08'),
+('9', 'Lingvistikk', 'Lingvistikk', 'Linguistics', 'Fonem', 'Fonem', 'Phoneme', 'Språklyd', 'Språklyd', 'Speech sound', 'Den minste lydenhet i et språk som kan skille mellom ordenes betydning.', 'Den minste lydeininga i eit språk som kan skilje mellom orda si tyding.', 'The smallest unit of sound in a language that can distinguish between word meanings.', '2024-07-09'),
+('10', 'Filosofi', 'Filosofi', 'Philosophy', 'Epistemologi', 'Epistemologi', 'Epistemology', 'Erkjennelsesteori', 'Erkjenningsteori', 'Theory of knowledge', 'Den grenen av filosofi som studerer kunnskapens natur, opprinnelse og grenser.', 'Den greina av filosofi som studerer kunnskapen sin natur, opphav og grenser.', 'The branch of philosophy that studies the nature, origin, and limits of human knowledge.', '2024-07-10'),
+('11', 'Sosiologi', 'Sosiologi', 'Sociology', 'Sosialisering', 'Sosialisering', 'Socialization', 'Sosial læring', 'Sosial læring', 'Social learning', 'Prosessen der individer lærer og internaliserer normer, verdier og atferdsmønstre i sitt samfunn.', 'Prosessen der individ lærer og internaliserer normer, verdiar og åtferdsmønster i samfunnet sitt.', 'The process through which individuals learn and internalize the norms, values, and behaviors of their society.', '2024-07-11'),
+('12', 'Astronomi', 'Astronomi', 'Astronomy', 'Galakse', 'Galakse', 'Galaxy', 'Stjernesystem', 'Stjernesystem', 'Star system', 'En massiv samling av stjerner, gass, støv og mørk materie som holdes sammen av tyngdekraften.', 'Ei massiv samling av stjerner, gass, støv og mørk materie som vert haldne saman av tyngdekrafta.', 'A vast collection of stars, gas, dust, and dark matter held together by gravity.', '2024-07-12'),
+('13', 'Medisin', 'Medisin', 'Medicine', 'Homeostase', 'Homeostase', 'Homeostasis', 'Likevekt', 'Likevekt', 'Equilibrium', 'Kroppens evne til å opprettholde et stabilt indre miljø til tross for endringer i det ytre miljøet.', 'Kroppen si evne til å oppretthalde eit stabilt indre miljø trass i endringar i det ytre miljøet.', 'The body\'s ability to maintain a stable internal environment despite changes in the external environment.', '2024-07-13'),
+('14', 'Kunsthistorie', 'Kunsthistorie', 'Art History', 'Impresjonisme', 'Impresjonisme', 'Impressionism', 'Inntrykkskunst', 'Inntrykkskunst', 'Impression art', 'En kunstbevegelse som oppsto på slutten av 1800-tallet, kjennetegnet ved å fange visuelle inntrykk av lys og bevegelse.', 'Ei kunstrørsle som oppstod på slutten av 1800-talet, kjenneteikna ved å fange visuelle inntrykk av lys og rørsle.', 'An art movement that emerged in the late 19th century, characterized by capturing visual impressions of light and movement.', '2024-07-14'),
+('15', 'Miljøvitenskap', 'Miljøvitskap', 'Environmental Science', 'Bærekraft', 'Berekraft', 'Sustainability', 'Bærekraftig utvikling', 'Berekraftig utvikling', 'Sustainable development', 'Prinsippet om å møte dagens behov uten å kompromittere fremtidige generasjoners evne til å møte sine egne behov.', 'Prinsippet om å møte dagens behov utan å kompromittere framtidige generasjonar si evne til å møte sine eigne behov.', 'The principle of meeting present needs without compromising the ability of future generations to meet their own needs.', '2024-07-15');
