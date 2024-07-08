@@ -1,10 +1,37 @@
 from flask import Flask, jsonify, request
 from flasgger import Swagger
-from mockdata import concepts
+from sqlalchemy import create_engine, Column, Integer, String, Date
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 import math
 
 app = Flask(__name__)
 Swagger(app)
+
+# Database connection
+DATABASE_URI = 'mysql://testuser:testpassword@mysql_container/testdb'
+engine = create_engine(DATABASE_URI)
+Session = sessionmaker(bind=engine)
+
+Base = declarative_base()
+
+class Concept(Base):
+    __tablename__ = 'concepts'
+
+    id = Column(String(255), primary_key=True)
+    subject_nb = Column(String(255))
+    subject_nn = Column(String(255))
+    subject_en = Column(String(255))
+    preferredLabel_nb = Column(String(255))
+    preferredLabel_nn = Column(String(255))
+    preferredLabel_en = Column(String(255))
+    alternativeLabel_nb = Column(String(255))
+    alternativeLabel_nn = Column(String(255))
+    alternativeLabel_en = Column(String(255))
+    definition_nb = Column(String(255))
+    definition_nn = Column(String(255))
+    definition_en = Column(String(255))
+    definition_lastUpdated = Column(Date)
 
 ITEMS_PER_PAGE = 4  # Number of items to display per page
 
@@ -83,20 +110,37 @@ def get_concepts():
     except ValueError:
         page = 0
 
-    total_concepts = len(concepts)
+    session = Session()
+    total_concepts = session.query(Concept).count()
     total_pages = math.ceil(total_concepts / ITEMS_PER_PAGE)
 
-    start_index = page * ITEMS_PER_PAGE
-    end_index = start_index + ITEMS_PER_PAGE
+    concepts = session.query(Concept).order_by(Concept.id).offset(page * ITEMS_PER_PAGE).limit(ITEMS_PER_PAGE).all()
 
-    paginated_concepts = concepts[start_index:end_index]
+    concept_list = [{
+        'id': c.id,
+        'subject_nb': c.subject_nb,
+        'subject_nn': c.subject_nn,
+        'subject_en': c.subject_en,
+        'preferredLabel_nb': c.preferredLabel_nb,
+        'preferredLabel_nn': c.preferredLabel_nn,
+        'preferredLabel_en': c.preferredLabel_en,
+        'alternativeLabel_nb': c.alternativeLabel_nb,
+        'alternativeLabel_nn': c.alternativeLabel_nn,
+        'alternativeLabel_en': c.alternativeLabel_en,
+        'definition_nb': c.definition_nb,
+        'definition_nn': c.definition_nn,
+        'definition_en': c.definition_en,
+        'definition_lastUpdated': c.definition_lastUpdated.isoformat() if c.definition_lastUpdated else None
+    } for c in concepts]
+
+    session.close()
 
     return jsonify({
-        "concepts": paginated_concepts,
+        "concepts": concept_list,
         "total_pages": total_pages,
         "current_page": page,
         "total_items": total_concepts
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000, debug=True)

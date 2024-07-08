@@ -22,10 +22,17 @@ services:
   integration_api:
     build: ./IntegrationApi/src/.
     container_name: integration_api_container
+    environment:
+      - PYTHONUNBUFFERED=1
     ports:
       - "8080:5000"
     networks:
       - mynetwork
+    volumes:
+      - ./IntegrationApi/src:/app
+    depends_on:
+      mysql:
+        condition: service_healthy
 
 networks:
   mynetwork:
