@@ -21,9 +21,6 @@ Vi ser for oss at kandidater bruker ca. 3-5 timer på å ferdigstille oppgavene.
 
 Selve intervjuet varer som regel rundt 1,5 time.
 
-
-
-
 ##
 
 ## Oppgave 1 – Bookingløsning
@@ -36,8 +33,6 @@ Beskriv en løsning av systemet. Ta også med vurderinger rundt valg av plattfor
 
 Hvilke nye muligheter vil et slikt system gi for ledelsen av senteret?
 
-
-
 ## Oppgave 2 – Dårlig ytelse
 
 Du jobber på et prosjekt der første versjon av et egenutviklet system er levert kunden. Applikasjonen består av en webklient som kjører på brukernes PC, tre webservere som er lastbalansert og en databaseserver.
@@ -47,8 +42,6 @@ I et møte med kunden får du vite at brukerne opplever applikasjonen som treg. 
 Hvilke elementer mener du kan spille inn på ytelsen i slike systemer?
 
 Hvordan vil du angripe dette problemet for å finne ut årsaken? Hvilke verktøy vil du bruke?
-
-
 
 ## Oppgave 3 – Integrasjonstjeneste
 
@@ -66,26 +59,28 @@ Det forventes at begrepene skal ha følgende JSON-format:
 
 {
 
-  "id": string,
+"id": string,
 
-  "subject": string,
+"subject": string,
 
-  "prefLabel": string,
+"prefLabel": string,
 
-  "altLabel": string,
+"altLabel": string,
 
-  "definition": { "tekst": string, "lastUpdated": date }
+"definition": { "tekst": string, "lastUpdated": date }
 
 }
 
 I denne oppgaven så bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
 
 Gjør følgende:
-1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
-https://www.docker.com/products/docker-desktop/
-2. Kjør bash eller powershell filen runme.
-(Denne bygger test api'et og så tar opp sql databasen og api'et)
 
+1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
+   https://www.docker.com/products/docker-desktop/
+2. Kjør bash eller powershell filen build_and_run.
+   (Denne bygger test api'et og så tar opp sql databasen og api'et)
+
+Swagger dokumentasjonen for tjenesten kan hentes på http://localhost:8080/apidocs/.
 For å hente ut alle begrep så kan man sende en POST-request til localhost:8080. Send med body { page: 1 } for å hente neste side.
 
 Lag ett kjørbart program i ditt valgte programmeringsspråk som har et REST-interface med to endepunkt:
@@ -102,21 +97,45 @@ Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med
 
 {
 
-  "id": string,
+"id": string,
 
-  "subject":  {  “nb”: string, “nn”: string, “en”: string },
+"subject": { “nb”: string, “nn”: string, “en”: string },
 
-  "prefLabel": {  “nb”: string, “nn”: string, “en”: string },
+"prefLabel": { “nb”: string, “nn”: string, “en”: string },
 
-  "altLabel": {  “nb”: string, “nn”: string, “en”: string },
+"altLabel": { “nb”: string, “nn”: string, “en”: string },
 
-  "definition": {
+"definition": {
 
       "tekst": {  “nb”: string, “nn”: string, “en”: string },
       "lastUpdated": date
 
-  }
+    }
+
 }
 
-
 Er det noe mer du burde ha gjort?
+
+## Oppgave 3b - DevOps
+
+Ta utgangspunkt i applikasjonen som er bygget i oppgave 3.
+
+### 1. Containerisering:
+
+- Lag en Dockerfile for å containerisere den eksisterende integrasjonstjenesten.
+- Sørg for at alle nødvendige avhengigheter er inkludert.
+
+### 2. Orchestrering:
+
+- Skriv en enkel Kubernetes-manifestfil for å deploye tjenesten.
+- Inkluder en tjeneste for å eksponere tjenesten.
+
+### 3. Overvåkning:
+
+- Foreslå en metode for å implementere grunnleggende overvåkning av tjenesten i Kubernetes-miljøet.
+- Beskriv kort hvilke nøkkelmetrikker du ville overvåket.
+
+### 4. CI/CD:
+
+- Skissér et forslag til en enkel CI/CD-pipeline for denne applikasjonen.
+- Forklar hvilke steg du ville inkludert i pipelinen.
