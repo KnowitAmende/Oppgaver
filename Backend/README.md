@@ -134,8 +134,11 @@ Ta utgangspunkt i applikasjonen som er bygget i oppgave 3.
 
 - Foreslå en metode for å implementere grunnleggende overvåkning av tjenesten i Kubernetes-miljøet.
 - Beskriv kort hvilke nøkkelmetrikker du ville overvåket.
+- Hvilke overvåkningsverktøy har du erfaring med? Hvordan ville du implementert overvåkning med disse verktøyene? Ta utgangspunkt i eventuelle skyplattformer du har erfaring med, eller beskriv hvordan du ville satt opp overvåkning med open source-verktøy.
 
 ### 4. CI/CD:
 
 - Skissér et forslag til en enkel CI/CD-pipeline for denne applikasjonen.
 - Forklar hvilke steg du ville inkludert i pipelinen.
+- Hvilke CI/CD-verktøy har du brukt tidligere? Har du kjennskap til andre verktøy som kan brukes for å sette opp CI/CD?
+- Hvordan ville du satt opp en CI/CD-pipeline hvis en kunde hadde krav om å sette opp alt on-prem? Beskriv trinnene og verktøyene du ville brukt i dette scenariet.
