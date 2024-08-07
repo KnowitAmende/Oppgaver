@@ -116,6 +116,7 @@ Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med
 
 Er det noe mer du burde ha gjort?
 
+<!--
 ## Oppgave 3b - DevOps
 
 Ta utgangspunkt i applikasjonen som er bygget i oppgave 3.
@@ -142,3 +143,4 @@ Ta utgangspunkt i applikasjonen som er bygget i oppgave 3.
 - Forklar hvilke steg du ville inkludert i pipelinen.
 - Hvilke CI/CD-verktøy har du brukt tidligere? Har du kjennskap til andre verktøy som kan brukes for å sette opp CI/CD?
 - Hvordan ville du satt opp en CI/CD-pipeline hvis en kunde hadde krav om å sette opp alt on-prem? Beskriv trinnene og verktøyene du ville brukt i dette scenariet.
+--!>
