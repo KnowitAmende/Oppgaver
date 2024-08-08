@@ -9,11 +9,9 @@ Under intervjuet vil vi be deg presentere besvarelsen og forklare hva du har ten
 
 Eksempler på virkemidler i tillegg til tekst:
 
-Flytdiagram
-
-Kode
-
-Skisser (f.eks i Visio)
+-   Flytdiagram
+-   Kode
+-   Skisser (f.eks i Visio)
 
 Oppgave 3 leveres som kode og deles gjennom f.eks. github minst 24 timer før intervjuet.
 
