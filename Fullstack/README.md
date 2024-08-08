@@ -1,7 +1,7 @@
 ![Knowit.png](../Knowit.png)
 ![Technology.png](../Technology.png)
 
-# Oppgaver
+# Praktisk informasjon
 
 Som en del av intervjuprosessen i Knowit benytter vi tekniske oppgaver. Disse oppgavene er ment som et hjelpemiddel for oss til å se hvordan våre kandidater tenker analytisk og angriper problemstillinger. Oppgavene er kun overordnet beskrevet slik at det er stor frihet i hvordan besvarelsen presenteres. Still gjerne forutsetninger der du føler for det.
 
@@ -72,7 +72,7 @@ Det forventes at begrepene skal ha følgende JSON-format:
 }
 ```
 
-I denne oppgaven så bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
+I denne oppgaven bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
 
 Gjør følgende:
 
