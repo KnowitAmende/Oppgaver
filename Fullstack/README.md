@@ -59,15 +59,15 @@ Det forventes at begrepene skal ha følgende JSON-format:
 ```json
 {
 
-	"id": string,
+ "id": string,
 
-	"subject": string,
+ "subject": string,
 
-	"prefLabel": string,
+ "prefLabel": string,
 
-	"altLabel": string,
+ "altLabel": string,
 
-	"definition": { "tekst": string, "lastUpdated": date }
+ "definition": { "tekst": string, "lastUpdated": date }
 
 }
 ```
