@@ -46,11 +46,11 @@ Hvilke nye muligheter vil et slikt system gi for ledelsen av senteret?
 
 Kunden du jobber for ønsker at du skal utvikle en ny integrasjonstjeneste. Den skal erstatte en eldre eksisterende løsning og må derfor gi ut data på samme format. Løsningen skal integrere mot en intern tjeneste og skal tilby to REST-endepunkter:
 
-/begrep
+`/begrep`
 
 Skal gi ut en liste med begreper
 
-/begrep/{id}
+`/begrep/{id}`
 
 Skal gi ut et enkelt begrep
 
@@ -77,18 +77,18 @@ I denne oppgaven så bruker vi docker-compose for å sette opp tjenesten som du 
 Gjør følgende:
 
 1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
-   https://www.docker.com/products/docker-desktop/
+   <https://www.docker.com/products/docker-desktop/>
 2. [Kjør bash eller powershell filen build_and_run](../Backend/build_and_run.sh).
    (Denne bygger test api'et og så tar opp sql databasen og api'et)
 
-Swagger dokumentasjonen for tjenesten kan hentes på http://localhost:8080/apidocs/.
+Swagger dokumentasjonen for tjenesten kan hentes på <http://localhost:8080/apidocs/>.
 
-For å hente ut alle begrep så kan man sende en POST-request til localhost:8080. Send med body { page: 1 } for å hente neste side.
+For å hente ut alle begrep så kan man sende en POST-request til `localhost:8080`. Send med body { page: 1 } for å hente neste side.
 
 Lag ett kjørbart program i ditt valgte programmeringsspråk som har et REST-interface med to endepunkt:
 
-/begrep som gir ut alle begrep
+`/begrep` som gir ut alle begrep
 
-/begrep/{id} server et spesifikt begrep
+`/begrep/{id}` server et spesifikt begrep
 
 Du kan selv velge teknologi og rammeverk, gi gjerne en begrunnelse for valgene.
