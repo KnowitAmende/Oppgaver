@@ -56,7 +56,7 @@ Skal gi ut et enkelt begrep
 
 Det forventes at begrepene skal ha følgende JSON-format:
 
-```json
+```javascript
 {
 
  "id": string,
