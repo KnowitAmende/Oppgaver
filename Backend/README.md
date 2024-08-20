@@ -45,33 +45,15 @@ Hvordan vil du angripe dette problemet for å finne ut årsaken? Hvilke verktøy
 
 ## Oppgave 3 – Integrasjonstjeneste
 
-Kunden du jobber for ønsker at du skal utvikle en ny integrasjonstjeneste. Den skal erstatte en eldre eksisterende løsning og må derfor gi ut data på samme format. Løsningen skal integrere mot en intern tjeneste og skal tilby to REST-endepunkter:
+Kunden du jobber for ønsker at du skal utvikle en ny integrasjonstjeneste. Tjenesten skal tilgjengeliggjøre diverse _begreper_. Den skal erstatte en eldre eksisterende løsning og må derfor gi ut data på samme format. Tjenesten skal hente data fra en intern tjeneste som leverer data på et internt format.
 
-/begrep
+### 3a
 
-Skal gi ut en liste med begreper
+I denne oppgaven skal du sett opp en REST-applikasjon som integreres mot en intern tjeneste.
 
-/begrep/{id}
 
-Skal gi ut et enkelt begrep
-
-Det forventes at begrepene skal ha følgende JSON-format:
-
-{
-
-"id": string,
-
-"subject": string,
-
-"prefLabel": string,
-
-"altLabel": string,
-
-"definition": { "tekst": string, "lastUpdated": date }
-
-}
-
-I denne oppgaven så bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
+#### Oppsett av intern tjeneste
+Vi bruker docker-compose for å sette opp tjenesten som du skal integrere mot.
 
 Gjør følgende:
 
@@ -81,40 +63,52 @@ Gjør følgende:
    (Denne bygger test api'et og så tar opp sql databasen og api'et)
 
 Swagger dokumentasjonen for tjenesten kan hentes på http://localhost:8080/apidocs/.
-For å hente ut alle begrep så kan man sende en POST-request til localhost:8080. Send med body { page: 1 } for å hente neste side.
+For å hente ut alle begrep så kan man sende en POST-request til `localhost:8080`. Send med body `{ page: 1 }` for å hente neste side.
 
-Lag ett kjørbart program i ditt valgte programmeringsspråk som har et REST-interface med to endepunkt:
+#### Utvikling av ny tjeneste
 
-/begrep som gir ut alle begrep
-
-/begrep/{id} server et spesifikt begrep
-
+Lag en integrasjonstjeneste som tilbyr informasjon om _begreper_. Begrepene skal hentes fra den interne tjenesten og tilbys som angitt under.
 Du kan selv velge teknologi og rammeverk, men gi gjerne en begrunnelse for valgene.
 
-Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med ønske om å oppgradere flere av konsumentene til tjenesten for å støtte flere språk.
+Tjenesten skal tilby følgende endepunkter:
 
-Ønsket format på output er:
+`/begrep`  
+Endepunkt som leverer en liste med alle begreper
 
+`/begrep/{id}`  
+Endepunkt som leverer ett begrep med angitt id.
+
+Det forventes at endepunktene skal tilby begreper med følgende JSON-format:
+```yaml
 {
-
-"id": string,
-
-"subject": { “nb”: string, “nn”: string, “en”: string },
-
-"prefLabel": { “nb”: string, “nn”: string, “en”: string },
-
-"altLabel": { “nb”: string, “nn”: string, “en”: string },
-
-"definition": {
-
-      "tekst": {  “nb”: string, “nn”: string, “en”: string },
-      "lastUpdated": date
-
-    }
-
+   "id": string,
+   "subject": string,
+   "prefLabel": string,
+   "altLabel": string,
+   "definition": { 
+      "tekst": string,
+      "lastUpdated": date 
+   }
 }
+```
 
-Er det noe mer du burde ha gjort?
+### 3b
+Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med ønske om å oppgradere noen av konsumentene til tjenesten for å støtte flere språk. Det vil fortsatt være enkelte brukere som bruker JSON-formatet som var spesifisert i oppgave 3a.
+
+Nytt format på begreper:
+```yaml
+{
+   "id": string,
+   "subject": { “nb”: string, “nn”: string, “en”: string },
+   "prefLabel": { “nb”: string, “nn”: string, “en”: string },
+   "altLabel": { “nb”: string, “nn”: string, “en”: string },
+   "definition": {
+      "tekst": { “nb”: string, “nn”: string, “en”: string },
+      "lastUpdated": date
+    }
+}
+```
+
 
 <!--
 ## Oppgave 3b - DevOps
