@@ -93,7 +93,7 @@ Det forventes at endepunktene skal tilby begreper med følgende JSON-format:
 ```
 
 ### 3b
-Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med ønske om å oppgradere noen av konsumentene til tjenesten for å støtte flere språk. Det vil fortsatt være enkelte brukere som bruker JSON-formatet som var spesifisert i oppgave 3a.
+Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med ønske om å oppgradere noen av konsumentene til tjenesten for å støtte flere språk. Det vil fortsatt være enkelte brukere som bruker JSON-formatet som var spesifisert i oppgave 3a. Du må lage støtte for nytt format som kan tilby flere språk på begrepene. 
 
 Nytt format på begreper:
 ```yaml
