@@ -1,9 +1,10 @@
+import math
+
 from flask import Flask, jsonify, request
 from flasgger import Swagger
-from sqlalchemy import create_engine, Column, Integer, String, Date
+from sqlalchemy import create_engine, Column, String, Date
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import math
 
 app = Flask(__name__)
 Swagger(app)
@@ -104,43 +105,44 @@ def get_concepts():
 
     # Ensure page is an integer and not negative
     try:
-        page = int(page)
-        if page < 0:
-            page = 0
+        page = max(int(page), 0)
     except ValueError:
         page = 0
 
-    session = Session()
-    total_concepts = session.query(Concept).count()
-    total_pages = math.ceil(total_concepts / ITEMS_PER_PAGE)
+    with Session() as session:
+        total_concepts = session.query(Concept).count()
+        total_pages = math.ceil(total_concepts / ITEMS_PER_PAGE)
 
-    concepts = session.query(Concept).order_by(Concept.id).offset(page * ITEMS_PER_PAGE).limit(ITEMS_PER_PAGE).all()
+        concepts = (session
+                    .query(Concept)
+                    .order_by(Concept.id)
+                    .offset(page * ITEMS_PER_PAGE)
+                    .limit(ITEMS_PER_PAGE)
+                    .all())
 
-    concept_list = [{
-        'id': c.id,
-        'subject_nb': c.subject_nb,
-        'subject_nn': c.subject_nn,
-        'subject_en': c.subject_en,
-        'preferredLabel_nb': c.preferredLabel_nb,
-        'preferredLabel_nn': c.preferredLabel_nn,
-        'preferredLabel_en': c.preferredLabel_en,
-        'alternativeLabel_nb': c.alternativeLabel_nb,
-        'alternativeLabel_nn': c.alternativeLabel_nn,
-        'alternativeLabel_en': c.alternativeLabel_en,
-        'definition_nb': c.definition_nb,
-        'definition_nn': c.definition_nn,
-        'definition_en': c.definition_en,
-        'definition_lastUpdated': c.definition_lastUpdated.isoformat() if c.definition_lastUpdated else None
-    } for c in concepts]
+        concept_list = [{
+            'id': c.id,
+            'subject_nb': c.subject_nb,
+            'subject_nn': c.subject_nn,
+            'subject_en': c.subject_en,
+            'preferredLabel_nb': c.preferredLabel_nb,
+            'preferredLabel_nn': c.preferredLabel_nn,
+            'preferredLabel_en': c.preferredLabel_en,
+            'alternativeLabel_nb': c.alternativeLabel_nb,
+            'alternativeLabel_nn': c.alternativeLabel_nn,
+            'alternativeLabel_en': c.alternativeLabel_en,
+            'definition_nb': c.definition_nb,
+            'definition_nn': c.definition_nn,
+            'definition_en': c.definition_en,
+            'definition_lastUpdated': c.definition_lastUpdated.isoformat() if c.definition_lastUpdated else None
+        } for c in concepts]
 
-    session.close()
-
-    return jsonify({
-        "concepts": concept_list,
-        "total_pages": total_pages,
-        "current_page": page,
-        "total_items": total_concepts
-    })
+        return jsonify({
+            "concepts": concept_list,
+            "total_pages": total_pages,
+            "current_page": page,
+            "total_items": total_concepts
+        })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
