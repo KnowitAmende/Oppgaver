@@ -58,7 +58,7 @@ Gjør følgende:
    (Denne bygger test api'et og så tar opp sql databasen og api'et)
 
 Swagger dokumentasjonen for tjenesten kan hentes på http://localhost:8080/apidocs/.
-For å hente ut alle begrep så kan man sende en POST-request til `localhost:8080`. Send med body `{ page: 1 }` for å hente neste side.
+For å hente ut alle begrep så kan man sende en POST-request til `localhost:8080/concepts`. Send med body `{ page: 1 }` for å hente neste side.
 
 #### Utvikling av ny tjeneste
 
