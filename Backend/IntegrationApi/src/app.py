@@ -1,4 +1,5 @@
 import math
+from time import sleep
 
 from flask import Flask, jsonify, request
 from flasgger import Swagger
@@ -136,6 +137,8 @@ def get_concepts():
             'definition_en': c.definition_en,
             'definition_lastUpdated': c.definition_lastUpdated.isoformat() if c.definition_lastUpdated else None
         } for c in concepts]
+
+        sleep(1.0 * (page + 1))
 
         return jsonify({
             "concepts": concept_list,
