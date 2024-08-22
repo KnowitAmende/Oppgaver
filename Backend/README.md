@@ -57,6 +57,7 @@ Skal gi ut et enkelt begrep
 
 Det forventes at begrepene skal ha følgende JSON-format:
 
+```yaml
 {
 
 "id": string,
@@ -70,6 +71,7 @@ Det forventes at begrepene skal ha følgende JSON-format:
 "definition": { "tekst": string, "lastUpdated": date }
 
 }
+```
 
 I denne oppgaven så bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
 
@@ -95,6 +97,7 @@ Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med
 
 Ønsket format på output er:
 
+```yaml
 {
 
 "id": string,
@@ -113,6 +116,7 @@ Noen måneder etter produksjonssetting av løsningen du laget, kommer kunden med
     }
 
 }
+```
 
 Er det noe mer du burde ha gjort?
 
