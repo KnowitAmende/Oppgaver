@@ -51,13 +51,12 @@ Kunden du jobber for ønsker at du skal utvikle en ny integrasjonstjeneste. Tjen
 
 I denne oppgaven skal du sett opp en REST-applikasjon som integreres mot en intern tjeneste.
 
-
 #### Oppsett av intern tjeneste
 Vi bruker docker-compose for å sette opp tjenesten som du skal integrere mot.
 
 Gjør følgende:
 
-1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
+1. Installer docker-desktop eller manuelt installer det som trengs på din maskintype:
    https://www.docker.com/products/docker-desktop/
 2. Kjør bash eller powershell filen build_and_run.
    (Denne bygger test api'et og så tar opp sql databasen og api'et)
@@ -72,6 +71,10 @@ Du kan selv velge teknologi og rammeverk, men gi gjerne en begrunnelse for valge
 
 Tjenesten skal tilby følgende endepunkter:
 
+```yaml
+{
+
+"id": string,
 `/begrep`  
 Endepunkt som leverer en liste med alle begreper
 
