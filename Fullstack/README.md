@@ -42,51 +42,47 @@ Hvilke nye muligheter vil et slikt system gi for ledelsen av senteret?
 
 ## Oppgave 3 – Integrasjonstjeneste
 
-Kunden du jobber for ønsker at du skal utvikle en ny integrasjonstjeneste. Den skal erstatte en eldre eksisterende løsning og må derfor gi ut data på samme format. Løsningen skal integrere mot en intern tjeneste og skal tilby to REST-endepunkter:
+Kunden du jobber for ønsker at du skal utvikle en ny integrasjonstjeneste. Tjenesten skal tilgjengeliggjøre diverse _begreper_. Den skal erstatte en eldre eksisterende løsning og må derfor gi ut data på samme format. Tjenesten skal hente data fra en intern tjeneste som leverer data på et internt format.
 
-`/begrep`
+I denne oppgaven skal du sett opp en REST-applikasjon som integreres mot en intern tjeneste.
 
-Skal gi ut en liste med begreper
 
-`/begrep/{id}`
-
-Skal gi ut et enkelt begrep
-
-Det forventes at begrepene skal ha følgende JSON-format:
-
-```javascript
-{
-
- "id": string,
-
- "subject": string,
-
- "prefLabel": string,
-
- "altLabel": string,
-
- "definition": { "tekst": string, "lastUpdated": date }
-
-}
-```
-
-I denne oppgaven bruker vi docker-compose for å sette opp tjenesten som du skal integrere mot.
+#### Oppsett av intern tjeneste
+Vi bruker docker-compose for å sette opp tjenesten som du skal integrere mot.
 
 Gjør følgende:
 
 1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
-   <https://www.docker.com/products/docker-desktop/>
-2. [Kjør bash eller powershell filen build_and_run](../Backend/build_and_run.sh).
+   https://www.docker.com/products/docker-desktop/
+2. Kjør bash eller powershell filen build_and_run.
    (Denne bygger test api'et og så tar opp sql databasen og api'et)
 
-Swagger dokumentasjonen for tjenesten kan hentes på <http://localhost:8080/apidocs/>.
+Swagger dokumentasjonen for tjenesten kan hentes på http://localhost:8080/apidocs/.
+For å hente ut alle begrep så kan man sende en POST-request til `localhost:8080/concepts`. Send med body `{ page: 1 }` for å hente neste side.
 
-For å hente ut alle begrep så kan man sende en POST-request til `localhost:8080`. Send med body { page: 1 } for å hente neste side.
+#### Utvikling av ny tjeneste
 
-Lag ett kjørbart program i ditt valgte programmeringsspråk som har et REST-interface med to endepunkt:
+Lag en integrasjonstjeneste som tilbyr informasjon om _begreper_. Begrepene skal hentes fra den interne tjenesten og tilbys som angitt under.
+Du kan selv velge teknologi og rammeverk, men gi gjerne en begrunnelse for valgene.
 
-`/begrep` som gir ut alle begrep
+Tjenesten skal tilby følgende endepunkter:
 
-`/begrep/{id}` server et spesifikt begrep
+`/begrep`  
+Endepunkt som leverer en liste med alle begreper
 
-Du kan selv velge teknologi og rammeverk, gi gjerne en begrunnelse for valgene.
+`/begrep/{id}`  
+Endepunkt som leverer ett begrep med angitt id.
+
+Det forventes at endepunktene skal tilby begreper med følgende JSON-format:
+```yaml
+{
+   "id": string,
+   "subject": string,
+   "prefLabel": string,
+   "altLabel": string,
+   "definition": { 
+      "tekst": string,
+      "lastUpdated": date 
+   }
+}
+```
