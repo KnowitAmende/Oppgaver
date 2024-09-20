@@ -54,7 +54,7 @@ Gjør følgende:
 
 1. Installere docker-desktop eller manuelt installer det som trengs på din maskintype:
    https://www.docker.com/products/docker-desktop/
-2. Kjør bash eller powershell filen build_and_run.
+2. Kjør bash eller powershell filen [build_and_run](../Backend/build_and_run.sh).
    (Denne bygger test api'et og så tar opp sql databasen og api'et)
 
 Swagger dokumentasjonen for tjenesten kan hentes på http://localhost:8080/apidocs/.
